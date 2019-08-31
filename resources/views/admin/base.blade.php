@@ -24,7 +24,21 @@
         }
     });
     layui.use(['form', 'layedit', 'laydate'], function(){
+        var $ = layui.$;
+        var form = layui.form;
 
+        //错误提示
+        @if(count($errors)>0)
+            @foreach($errors->all() as $error)
+                layer.msg("{{$error}}",{icon:5});
+                @break
+            @endforeach
+        @endif
+
+        //信息提示
+        @if(session('status'))
+            layer.msg("{{session('status')}}",{icon:6});
+        @endif
     });
 </script>
 @yield('script')
